@@ -1,0 +1,11 @@
+.layout {
+    height: 100vhn;
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+}
+
+.layout main {
+    flex-direction: column;
+    flex-grow: 1;
+}
