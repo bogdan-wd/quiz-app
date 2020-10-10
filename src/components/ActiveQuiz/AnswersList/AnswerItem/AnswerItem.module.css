@@ -13,3 +13,11 @@
     background: rgba(255,255,255, .2);
     transition: background .3s ease-in-out;
 }
+
+.answerItem.success{
+    background: greenyellow;
+}
+
+.answerItem.error{
+    background: tomato;
+}
