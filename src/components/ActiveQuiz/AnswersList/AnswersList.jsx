@@ -9,7 +9,8 @@ const AnswersList = props => (
             return (
                 <AnswerItem
                 answer={answer}
-                key={idx}/>
+                key={idx}
+                onAnswerClick={props.onAnswerClick}/>
             )
         })}
     </ul>
