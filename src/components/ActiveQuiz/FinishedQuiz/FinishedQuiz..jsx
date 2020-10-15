@@ -1,14 +1,14 @@
 import React from 'react';
+import Button from '../UI/Button/Button';
 import styles from './FinishedQuiz.module.css';
 
 const FinishedQuiz = props => {
-    const successCount = Object.keys(props.results).reduce((total, key) =>{
-        if(props.results[key] === 'success'){
-            total++
-        }
-        return total
-    }, 0)
-    console.log(props.results);
+  const successCount = Object.keys (props.results).reduce ((total, key) => {
+    if (props.results[key] === 'success') {
+      total++;
+    }
+    return total;
+  }, 0);
   return (
     <div className={styles.finishedQuiz}>
       <ul>
@@ -34,7 +34,8 @@ const FinishedQuiz = props => {
       </p>
 
       <div>
-        <button onClick={props.onRetry}>Повторить</button>
+        <Button type="primary" onClick={props.onRetry}>Повторить</Button>
+        <Button type="success" >Перейти в список тесток</Button>
       </div>
     </div>
   );
