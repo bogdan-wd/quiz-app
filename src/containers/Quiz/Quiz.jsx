@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import styles from './Quiz.module.css';
 import ActiveQuiz from './../../components/ActiveQuiz/ActiveQuiz';
-import FinishedQuiz from '../../components/ActiveQuiz/FinishedQuiz/FinishedQuiz.';
+import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz.';
+
 
 class Quiz extends Component {
   state = {
-    results:{},
+    results: {},
     isFinished: false,
     activeQuestion: 0,
     answerState: null, // {[id]: 'success' 'error'}
@@ -71,12 +72,12 @@ class Quiz extends Component {
     const results = this.state.results;
 
     if (question.rightAnswerId === answerId) {
-      if(!results[question.id]){
-        results[question.id] = 'success'
+      if (!results[question.id]) {
+        results[question.id] = 'success';
       }
       this.setState ({
         answerState: {[answerId]: 'success'},
-        results
+        results,
       });
 
       const timeOut = window.setTimeout (() => {
@@ -93,10 +94,10 @@ class Quiz extends Component {
         window.clearTimeout (timeOut);
       }, 1000);
     } else {
-      results[question.id] = 'error'
+      results[question.id] = 'error';
       this.setState ({
         answerState: {[answerId]: 'error'},
-        results
+        results,
       });
     }
   };
@@ -104,15 +105,15 @@ class Quiz extends Component {
   isQuizFinished () {
     return this.state.activeQuestion + 1 === this.state.quiz.length;
   }
-  
-  onRetryHandler = () =>{
-    this.setState({
+
+  onRetryHandler = () => {
+    this.setState ({
       activeQuestion: 0,
       answerState: null,
       isFinished: false,
       results: {},
-    })
-  }
+    });
+  };
 
   render () {
     return (
@@ -124,10 +125,10 @@ class Quiz extends Component {
 
           {this.state.isFinished
             ? <FinishedQuiz
-              results={this.state.results}
-              quiz={this.state.quiz}
-              onRetry={this.onRetryHandler}
-            />
+                results={this.state.results}
+                quiz={this.state.quiz}
+                onRetry={this.onRetryHandler}
+              />
             : <ActiveQuiz
                 answers={this.state.quiz[this.state.activeQuestion].answers}
                 question={this.state.quiz[this.state.activeQuestion].question}
