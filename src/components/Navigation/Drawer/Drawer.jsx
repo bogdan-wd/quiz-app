@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import BackDrop from '../../UI/BackDrop/BackDrop';
 import styles from './Drawer.module.css';
 
 const links = [1, 2, 3];
@@ -15,22 +16,20 @@ class Drawer extends Component {
   }
 
   render () {
-    const navClasses = [styles.drawer];
-    const BackClasses = [styles.wrapper];
-
+    const classes = [styles.drawer];
 
     if (!this.props.isOpen) {
-      navClasses.push (styles.close);
-      BackClasses.push (styles.close);
+      classes.push (styles.close);
     }
     return (
-      <div className={BackClasses.join(' ')}>
-        <nav className={navClasses.join (' ')}>
+      <React.Fragment>
+        <nav className={classes.join (' ')}>
           <ul>
             {this.renderLinks ()}
           </ul>
         </nav>
-      </div>
+        {this.props.isOpen ? <BackDrop onClick={this.props.onClose} /> : null}
+      </React.Fragment>
     );
   }
 }
